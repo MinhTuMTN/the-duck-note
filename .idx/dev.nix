@@ -26,7 +26,7 @@
   };
 
   # Sets environment variables in the workspace
-  env = {};
+  env = { };
   idx = {
     # Search for the extensions you want on https://open-vsx.org/ and use "publisher.id"
     extensions = [
@@ -43,14 +43,13 @@
     ];
     workspace = {
       # Runs when a workspace is first created with this `dev.nix` file
-      onCreate = {
-        install = "mvn clean install";
-      };
+      # onCreate = {
+      #   install = "mvn clean install";
+      # };
       # Runs when a workspace is (re)started
-      onStart = {
-
-        run-server = "PORT=3000 mvn spring-boot:run";
-      };
+      # onStart = {
+      #   run-rabbitmq-docker = "docker rm rabbitmq && docker run -d --name rabbitmq -p 5672:5672 -p 15672:15672 rabbitmq:3-management";
+      # };
     };
   };
 }

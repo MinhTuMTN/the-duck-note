@@ -1,10 +1,10 @@
-package com.example.notification;
+package com.theduck.note.gateway;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class NotificationApplicationTests {
+class ApiGatewayApplicationTests {
 
 	@Test
 	void contextLoads() {
