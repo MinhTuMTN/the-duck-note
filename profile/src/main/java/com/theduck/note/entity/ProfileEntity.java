@@ -1,4 +1,6 @@
-package com.theduck.note.gateway.entity;
+package com.theduck.note.entity;
+
+import java.util.Date;
 
 import com.theduck.note.commons.entity.BaseEntity;
 
@@ -8,6 +10,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -15,18 +18,21 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-@Table(name = "accounts")
+@Builder
+@Table(name = "profiles")
 @NoArgsConstructor
 @AllArgsConstructor
-public class AccountEntity extends BaseEntity {
+public class ProfileEntity extends BaseEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    private Long profileId;
 
-    private String email;
+    private Long accountId;
 
-    private String password;
+    private String fullName;
 
-    private String role;
+    private String gender;
+
+    private Date dateOfBirth;
 }

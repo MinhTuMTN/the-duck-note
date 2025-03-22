@@ -26,8 +26,7 @@ public class AccountController {
 
     @GetMapping
     public ResponseEntity<?> getAllAccounts(
-        @RequestParam(defaultValue = "false") boolean forceCache
-    ) {
+            @RequestParam(defaultValue = "false") boolean forceCache) {
         long start = System.currentTimeMillis();
         var result = this.accountService.getAllAccounts(forceCache);
         long end = System.currentTimeMillis();
@@ -50,7 +49,7 @@ public class AccountController {
     }
 
     @GetMapping("/{accountId}")
-    public ResponseEntity<?> getAccountByAccountId(@PathVariable("accountId") int accountId) {
+    public ResponseEntity<?> getAccountByAccountId(@PathVariable int accountId) {
         return GeneralResponse.builder()
                 .message("Success")
                 .data(this.accountService.getAccountByAccountId(accountId))

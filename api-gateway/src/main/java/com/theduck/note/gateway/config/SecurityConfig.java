@@ -20,14 +20,14 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class SecurityConfig {
 
-    private static final String[] PUBLIC_ENDPOINTS = { "/auth/signup", "/auth/signin" };
+    private static final String[] PUBLIC_ENDPOINTS = { "/auth/signup", "/auth/signin", "/test/hello" };
 
     private JwtAuthenticationFilter jwtAuthenticationFilter;
 
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http.authorizeHttpRequests(request -> request.requestMatchers(HttpMethod.POST, PUBLIC_ENDPOINTS).permitAll()
-                .anyRequest().authenticated());
+        http.authorizeHttpRequests(
+                request -> request.requestMatchers(PUBLIC_ENDPOINTS).permitAll().anyRequest().authenticated());
 
         http.csrf(csrf -> csrf.disable())
                 .sessionManagement(management -> management.sessionCreationPolicy(SessionCreationPolicy.STATELESS))

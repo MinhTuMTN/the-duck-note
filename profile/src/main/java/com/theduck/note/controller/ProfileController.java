@@ -12,7 +12,6 @@ public class ProfileController {
 
     @GetMapping()
     public String hello() {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         return "Hello world!";
     }
 
