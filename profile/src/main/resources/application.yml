@@ -1,8 +1,8 @@
 server:
-  port: 8080
+  port: 8081
 spring:
   application:
-    name: api-gateway
+    name: profile
   devtools:
     restart:
       enabled: true
@@ -11,29 +11,10 @@ spring:
   datasource:
     url: jdbc:mysql://minhtumtn.ddns.net:3306/testdb?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
     username: root
-    # password: 0703
-    hikari:
-      password: "0703"
+    password: "0703"
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     database-platform: org.hibernate.dialect.MySQL8Dialect
     hibernate:
       ddl-auto: create
     show-sql: true
-  rabbitmq:
-    host: minhtumtn.ddns.net
-    port: 5672
-    username: guest
-    password: guest
-  cloud:
-    gateway:
-      mvc:
-        routes:
-          - id: profile
-            uri: http://localhost:8081
-            predicates:
-              - Path=/api/profiles/**
-
-logging:
-  file:
-    name: application.log

@@ -1,0 +1,28 @@
+services:
+  api-gateway:
+    image: minhtumtn/api-gateway:1.0
+    container_name: api-gateway
+    ports: 
+      - "8080:8080"
+    networks:
+      - theducknote
+
+  notification:
+    image: minhtumtn/notification:1.0
+    container_name: notification
+    ports: 
+      - "8082:8082"
+    networks:
+      - theducknote
+
+  profile:
+    image: minhtumtn/profile:1.0
+    container_name: profile
+    ports: 
+      - "8081:8081"
+    networks:
+      - theducknote
+
+networks:
+  theducknote:
+    driver: bridge
