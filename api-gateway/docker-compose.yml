@@ -14,6 +14,9 @@ services:
       - "8082:8082"
     networks:
       - theducknote
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
 
   profile:
     image: minhtumtn/profile:1.0
@@ -22,6 +25,18 @@ services:
       - "8081:8081"
     networks:
       - theducknote
+  
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    healthcheck:
+      test: ["CMD", "rabbitmqctl", "status"]
+      interval: 10s
+      timeout: 10s
+      retries: 5
 
 networks:
   theducknote:

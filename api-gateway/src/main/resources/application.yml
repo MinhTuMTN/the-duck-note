@@ -30,7 +30,7 @@ spring:
       mvc:
         routes:
           - id: profile
-            uri: http://localhost:8081
+            uri: http://profile:8081
             predicates:
               - Path=/api/profiles/**
 
