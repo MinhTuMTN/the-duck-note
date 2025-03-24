@@ -1,4 +1,4 @@
-package com.theduck.note.dto;
+package com.theduck.note.commons.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
