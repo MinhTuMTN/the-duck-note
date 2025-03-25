@@ -2,13 +2,16 @@ package com.theduck.note.authentication.service;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.theduck.note.authentication.dto.AuthenticationRequest;
 import com.theduck.note.authentication.dto.AuthenticationResponse;
-import com.theduck.note.authentication.dto.SignupRequest;
 import com.theduck.note.authentication.entity.AccountEntity;
+import com.theduck.note.authentication.feign.ProfileFeignClient;
 import com.theduck.note.authentication.repository.AccountRepository;
 import com.theduck.note.commons.constant.Role;
+import com.theduck.note.commons.dto.SignupRequest;
+import com.theduck.note.commons.model.ProfileModel;
 
 import lombok.AllArgsConstructor;
 
@@ -22,14 +25,18 @@ public class AccountService {
 
     private JwtTokenService tokenService;
 
+    private ProfileFeignClient profileClient;
+
+    @Transactional
     public AuthenticationResponse signupNewAccount(SignupRequest request) throws Exception {
         AccountEntity account = new AccountEntity();
         account.setEmail(request.getEmail());
         account.setPassword(this.passwordEncoder.encode(request.getPassword()));
         account.setRole(Role.USER.getValue());
 
-        this.accountRepository.save(account);
-        // this.sendEmailNotification(request);
+        AccountEntity result = this.accountRepository.save(account);
+        ProfileModel profileModel = ProfileModel.fromSignupRequest(request, result.getId());
+        this.profileClient.createProfile(profileModel);
 
         String token = this.tokenService.generateToken(account);
         return new AuthenticationResponse(token);

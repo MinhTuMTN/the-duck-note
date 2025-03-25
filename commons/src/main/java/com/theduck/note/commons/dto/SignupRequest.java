@@ -1,4 +1,8 @@
-package com.theduck.note.authentication.dto;
+package com.theduck.note.commons.dto;
+
+import java.util.Date;
+
+import com.theduck.note.commons.constant.Gender;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -16,4 +20,10 @@ public class SignupRequest {
     private String password;
 
     private String confirmPassword;
+
+    private Gender gender;
+
+    private Date dateOfBirth;
+
+    private String address;
 }

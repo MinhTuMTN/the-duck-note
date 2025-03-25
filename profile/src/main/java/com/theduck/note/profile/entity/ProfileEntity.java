@@ -30,9 +30,13 @@ public class ProfileEntity extends BaseEntity {
 
     private Long accountId;
 
+    private String email;
+
     private String fullName;
 
     private String gender;
 
     private Date dateOfBirth;
+
+    private String address;
 }

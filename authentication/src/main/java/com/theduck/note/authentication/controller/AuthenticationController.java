@@ -7,9 +7,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.theduck.note.authentication.dto.AuthenticationRequest;
-import com.theduck.note.authentication.dto.SignupRequest;
 import com.theduck.note.authentication.service.AccountService;
 import com.theduck.note.commons.dto.GeneralResponse;
+import com.theduck.note.commons.dto.SignupRequest;
 
 import lombok.AllArgsConstructor;
 
